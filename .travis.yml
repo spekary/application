@@ -5,6 +5,9 @@ cache:
     - $HOME/.composer/cache
     - vendor
 
+git:
+  depth: 3
+
 php:
     - '5.6'
     - '7.0'
