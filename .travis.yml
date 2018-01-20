@@ -21,9 +21,6 @@ install:
     - cp -R -t project test/travis/project/*
 env:
     - DB=mysql
-    - DB=pgsql POSTGRESQL_VERSION=9.1
-    - DB=pgsql POSTGRESQL_VERSION=9.2
-    - DB=pgsql POSTGRESQL_VERSION=9.3
     - DB=pgsql POSTGRESQL_VERSION=9.4
 
 before_script:
