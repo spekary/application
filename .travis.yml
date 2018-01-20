@@ -6,7 +6,7 @@ php:
     - nightly
 
 install:
-    - composer install -n
+    - composer install -n -vvv
     - pwd
     - cp -R -t project install/project/*
     - cp install/qcubed.inc.php .
