@@ -31,5 +31,6 @@ class EmailTextBox extends TextBox
         parent::__construct($objParentObject, $strControlId);
         $this->strLabelForInvalid = t('Invalid Email Address');
         $this->strTextMode = self::EMAIL;
+        $this->strCrossScripting = self::XSS_PHP_SANITIZE;
     }
 }

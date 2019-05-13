@@ -285,7 +285,7 @@ trait ListItemManagerTrait
     }
 
     /**
-     * Returns the first tiem found with the given value.
+     * Returns the first item found with the given value.
      *
      * @param $strValue
      * @return null|ListItemBase

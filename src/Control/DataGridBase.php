@@ -120,7 +120,7 @@ class DataGridBase extends TableBase
      */
     public function addActions()
     {
-        $this->addAction(new Q\Event\CheckboxColumnClick(), new Q\Action\AjaxControl($this, 'CheckClick'));
+        $this->addAction(new Q\Event\CheckboxColumnClick(), new Q\Action\AjaxControl($this, 'checkClick'));
         $this->addAction(new Q\Event\CheckboxColumnClick(),
             new Q\Action\StopPropagation()); // prevent check click from bubbling as a row click.
 

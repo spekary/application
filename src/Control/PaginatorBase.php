@@ -18,7 +18,7 @@ use QCubed\Exception\InvalidCast;
 use QCubed\Type;
 
 /**
- * This controls works together with a PaginatedControl to implement a paginator for that control. Multiple
+ * This control works together with a PaginatedControl to implement a paginator for that control. Multiple
  * paginators per PaginatedControl can be declared.
  *
  * @property integer      $ItemsPerPage        How many items you want to display per page when Pagination is enabled

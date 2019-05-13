@@ -107,6 +107,10 @@ class HListItem extends ListItemBase
         return $this->objSubTagStyler;
     }
 
+    public function getItemText() {
+        return $this->strName;
+    }
+
     /////////////////////////
     // Public Properties: GET
     /////////////////////////

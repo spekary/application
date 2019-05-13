@@ -3,6 +3,7 @@ require_once('../qcubed.inc.php');
 
 class BasicForm extends \QCubed\Project\Control\FormBase {
 	protected $txtText;
+	protected $pnl1;
 	protected $txtText2;
 	protected $lstSelect;
 	protected $lstSelect2;
@@ -14,9 +15,6 @@ class BasicForm extends \QCubed\Project\Control\FormBase {
 	protected $rdoRadio2;
 	protected $rdoRadio3;
 
-	/** @var  \QCubed\Control\ImageButton */
-	protected $btnImage;
-
 	protected $btnServer;
 	protected $btnAjax;
 	protected $btnSetItemsAjax;
@@ -25,6 +23,9 @@ class BasicForm extends \QCubed\Project\Control\FormBase {
 		$this->txtText = new \QCubed\Project\Control\TextBox($this);
 		$this->txtText->Text = 'Default';
 		$this->txtText->Name = 'TextBox';
+		$this->txtText->AddAction(new \QCubed\Event\Change(), new \QCubed\Action\Ajax("txtChanged"));
+
+		$this->pnl1 = new \QCubed\Control\Panel($this);
 
 		$this->txtText2 = new \QCubed\Project\Control\TextBox($this);
 		$this->txtText2->Text = 'Big';
@@ -77,14 +78,9 @@ class BasicForm extends \QCubed\Project\Control\FormBase {
 		$this->rdoRadio3->Name = 'Item 3';
 		$this->rdoRadio3->GroupName = 'MyGroup';
 
-		$this->btnImage = new \QCubed\Control\ImageButton($this);
-		$this->btnImage->Name = 'Image Button';
-		$this->btnImage->ImageUrl = QCUBED_PHP_URL . '/examples/images/data_model_thumbnail.png';
-		$this->btnImage->AddAction (new \QCubed\Event\Click(), new \QCubed\Action\RegisterClickPosition());
-
 		$this->btnServer = new \QCubed\Project\Control\Button ($this);
 		$this->btnServer->Text = 'Server Submit';
-		$this->btnServer->AddAction(new \QCubed\Event\Click(), new \QCubed\Action\Server('submit_click'));
+		$this->btnServer->OnClick(new \QCubed\Action\Server('submit_click'));
 
 		$this->btnAjax = new \QCubed\Project\Control\Button ($this);
 		$this->btnAjax->Text = 'Ajax Submit';
@@ -109,7 +105,6 @@ class BasicForm extends \QCubed\Project\Control\FormBase {
 		$this->rdoRadio1->Warning = 'Value = ' . $this->rdoRadio1->Checked;
 		$this->rdoRadio2->Warning = 'Value = ' . $this->rdoRadio2->Checked;
 		$this->rdoRadio3->Warning = 'Value = ' . $this->rdoRadio3->Checked;
-		$this->btnImage->Warning = 'X = ' . $this->btnImage->ClickX . '; Y = ' . $this->btnImage->ClickY;
 	}
 
 	/**
@@ -128,6 +123,10 @@ class BasicForm extends \QCubed\Project\Control\FormBase {
 		$this->chkCheck->Checked = true;
 		$this->rdoRadio2->Checked = true;
 	}
+
+	public function txtChanged() {
+	    $this->pnl1->Text = $this->txtText->Text;
+    }
 
 }
 

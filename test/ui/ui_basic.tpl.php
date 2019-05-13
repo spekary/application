@@ -6,6 +6,7 @@
 
 <?php $this->renderBegin(); ?>
 <?php $this->txtText->RenderWithName(); ?>
+<?php $this->pnl1->Render(); ?>
 <?php $this->txtText2->RenderWithName(); ?>
 <?php $this->chkCheck->RenderWithName(); ?>
 <?php $this->lstSelect->RenderWithName(); ?>
@@ -20,7 +21,6 @@
 	<?php $this->rdoRadio3->RenderWithName(); ?>
 
 </fieldset>
-<?php $this->btnImage->RenderWithName(); ?>
 <?php $this->btnServer->Render(); ?>
 <?php $this->btnAjax->Render(); ?>
 <?php $this->btnSetItemsAjax->Render(); ?>

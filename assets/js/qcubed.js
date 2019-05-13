@@ -879,14 +879,14 @@ qcubed.updateForm = function() {
 
     // the following code prevents too many updates from happening in a short amount of time.
     // the default will update no faster than once per second.
-    if (newTime - qcubed._prevUpdateTime >= qcubed.minUpdateInterval) {
+    if (newTime - qcubed._prevUpdateTime > qcubed.minUpdateInterval) {
         //refresh immediately
         var strForm = $j('#Qform__FormId').val();
         qcubed.postAjax (strForm, '', '', '', '', false);
         qcubed.clearTimeout ('qcubed.update');
     } else if (!qcubed._objTimers['qcubed.update']) {
         // delay to let multiple fast actions only trigger periodic refreshes
-        qcubed.setTimeout ('qcubed.update', 'qcubed.updateForm', qcubed.minUpdateInterval);
+        qcubed.setTimeout ('qcubed.update', qcubed.updateForm, qcubed.minUpdateInterval);
     }
 };
 
@@ -937,6 +937,11 @@ qcubed.dialog = function(controlId) {
             }
             event.preventDefault();
         }
+    });
+    $j('#' + controlId).on("tabsactivate", function(event, ui) {
+        var i = $j(this).tabs( "option", "active" );
+        var id = ui.newPanel ? ui.newPanel.attr("id") : null;
+        qc.recordControlModification(controlId, "_active", [i,id]);
     });
 };
 
@@ -993,14 +998,6 @@ qcubed.datagrid2 = function(controlId) {
         var cellIndex = $j(this).parent()[0].cellIndex;
         $j(this).trigger('qdg2sort', cellIndex); // Triggers the QDataGrid_SortEvent
         event.stopPropagation();
-    });
-};
-
-qcubed.dialog = function(controlId) {
-    $j('#' + controlId).on("tabsactivate", function(event, ui) {
-        var i = $j(this).tabs( "option", "active" );
-        var id = ui.newPanel ? ui.newPanel.attr("id") : null;
-        qc.recordControlModification(controlId, "_active", [i,id]);
     });
 };
 
